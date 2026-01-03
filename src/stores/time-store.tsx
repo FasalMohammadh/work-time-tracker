@@ -1,30 +1,13 @@
 import { atom, map } from "nanostores";
 import type { Break, BreakMap } from "../types/types";
-import { getIsClient } from "../lib/utils";
 
 const SIGN_IN_TIME_KEY = "signInTime";
 const SIGN_OFF_TIME_KEY = "signOffTime";
 const BREAKS_KEY = "breaks";
 
-const signInTime = atom<string>(
-  getIsClient() ? localStorage.getItem(SIGN_IN_TIME_KEY) ?? "" : ""
-);
-const signOffTime = atom<string>(
-  getIsClient() ? localStorage.getItem(SIGN_OFF_TIME_KEY) ?? "" : ""
-);
-
-const getInitialBreaks = () => {
-  if (!getIsClient()) return {};
-  const stored = localStorage.getItem(BREAKS_KEY);
-  if (!stored) return {};
-  try {
-    return JSON.parse(stored);
-  } catch {
-    return {};
-  }
-};
-
-const breaks = map<BreakMap>(getInitialBreaks());
+const signInTime = atom<string>("");
+const signOffTime = atom<string>("");
+const breaks = map<BreakMap>({});
 
 const setSignInTime = (time: string) => {
   localStorage.setItem(SIGN_IN_TIME_KEY, time);
@@ -90,4 +73,7 @@ export {
   addBreaks,
   updateBreak,
   reset,
+  SIGN_IN_TIME_KEY,
+  SIGN_OFF_TIME_KEY,
+  BREAKS_KEY,
 };

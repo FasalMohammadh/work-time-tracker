@@ -9,6 +9,7 @@ import { Breaks } from "../components/breaks";
 import { Summary } from "../components/summary";
 import { GeminiApiKeyInput } from "../components/gemini-api-key-input";
 import { ChatAnalyzer } from "../components/chat-analyzer";
+import { UpdateStores } from "../components/update-stores";
 
 import "../styles/global.css";
 ---
@@ -94,5 +95,6 @@ import "../styles/global.css";
         </form>
       </div>
     </main>
+    <UpdateStores client:only="react" />
   </body>
 </html>
