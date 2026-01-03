@@ -1,43 +1,63 @@
-# Astro Starter Kit: Minimal
+# Work Time
 
-```sh
-pnpm create astro@latest -- --template minimal
+A personal work time tracker application built with Astro and React. This application helps users efficiently track their daily work hours, manage breaks, and ensure data persistence across sessions using local storage.
+
+![License](https://img.shields.io/github/license/fasalmohammadh/work-time-tracker?style=flat-square)
+
+## Built With
+
+- **Astro** - The web framework for building content-driven websites.
+- **React** - A JavaScript library for building user interfaces.
+- **Tailwind CSS** - A utility-first CSS framework for rapid UI development.
+- **Nanostores** - A tiny state manager for React, Preact, Vue, Svelte, and vanilla JS.
+
+## Installation
+
+### Prerequisites
+
+- Node.js (v18+)
+- pnpm
+
+### Steps
+
+1. Clone the repository
+
+   ```bash
+   git clone https://github.com/fasalmohammadh/work-time-tracker.git
+   cd work-time
+   ```
+
+2. Install dependencies
+
+   ```bash
+   pnpm install
+   ```
+
+## Usage
+
+Start the development server:
+
+```bash
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Then open your browser and navigate to:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+http://localhost:4321
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Features
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- **Daily Time Tracking**: Easily sign in and sign out to track your daily work hours.
+- **Break Management**: Add and manage multiple breaks throughout your workday.
+- **Data Persistence**: Your data is saved locally using Local Storage, so you never lose your progress even if you close the browser.
+- **Responsive Design**: Clean and modern UI built with Tailwind CSS.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## License
 
-## 🧞 Commands
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-All commands are run from the root of the project, from a terminal:
+## Author
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+**Fasal Mohammadh**
