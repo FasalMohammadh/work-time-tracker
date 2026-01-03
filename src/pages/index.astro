@@ -1,16 +1,98 @@
 ---
+import { Font } from "astro:assets";
 
+import { SignInTimeInput } from "../components/sign-in-time-input";
+import { SignOffTimeInput } from "../components/sign-off-time-input";
+import { Reset } from "../components/reset";
+import { AddBreak } from "../components/add-break";
+import { Breaks } from "../components/breaks";
+import { Summary } from "../components/summary";
+import { GeminiApiKeyInput } from "../components/gemini-api-key-input";
+import { ChatAnalyzer } from "../components/chat-analyzer";
+
+import "../styles/global.css";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work Time Calculator</title>
+    <meta
+      name="description"
+      content="A simple tool to calculate your daily worked hours with break management."
+    />
+    <Font cssVariable="--font-outfit" preload />
+  </head>
+  <body
+    class="font-outfit bg-slate-950 text-slate-50 min-h-screen flex items-center justify-center"
+  >
+    <main class="p-5 w-full max-w-6xl">
+      <header class="text-center mb-8 animate-fade-in-down">
+        <h1 class="text-4xl font-bold text-indigo-300 mb-2">Time Tracker</h1>
+        <p class="text-slate-400">
+          Track your daily worked hours effortlessly.
+        </p>
+      </header>
+
+      <div class="flex max-md:flex-col gap-4">
+        <div class="flex flex-col gap-4 basis-1/2">
+          <GeminiApiKeyInput client:load />
+          <ChatAnalyzer client:load />
+        </div>
+
+        <form
+          id="calculator-form"
+          class="bg-slate-900/70 border border-slate-800/50 rounded-2xl p-8 animate-scale-in basis-1/2"
+          novalidate
+        >
+          <!-- Sign In/Out Section -->
+          <section class="mb-8">
+            <div class="flex flex-col mb-4">
+              <label
+                for="sign-in"
+                class="text-sm text-slate-400 mb-2 font-medium"
+                >Sign In <span class="text-indigo-500">*</span></label
+              >
+              <SignInTimeInput client:load id="sign-in" />
+            </div>
+
+            <div class="flex flex-col">
+              <label
+                for="sign-off"
+                class="text-sm text-slate-400 mb-2 font-medium"
+                >Sign Off <span class="text-[0.8em] opacity-70">(Optional)</span
+                ></label
+              >
+              <SignOffTimeInput client:load id="sign-off" />
+            </div>
+          </section>
+
+          <!-- Breaks Section -->
+          <section class="mb-8">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-xl font-semibold text-white">Breaks</h2>
+              <AddBreak client:load />
+            </div>
+            <div id="breaks-container" class="flex flex-col gap-3">
+              <Breaks client:load />
+            </div>
+            <div
+              id="breaks-error"
+              class="hidden text-sm text-red-500 mt-2 items-center gap-1"
+            >
+            </div>
+          </section>
+
+          <!-- Summary Section -->
+          <Summary client:load />
+
+          <!-- Controls -->
+          <div class="flex justify-end">
+            <Reset client:load />
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
 </html>
