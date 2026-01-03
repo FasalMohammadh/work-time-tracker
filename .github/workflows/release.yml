@@ -1,15 +1,15 @@
-name: Deploy
+name: Create Release
 
 on:
   push:
-    branches:
-      - main
+    tags: ["v*"]
 
 permissions:
   id-token: write
+  contents: read
 
 jobs:
-  deploy:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -34,11 +34,13 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      - name: Configure AWS
-        uses: aws-actions/configure-aws-credentials@v5.1.1
-        with:
-          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
-          aws-region: ${{ vars.AWS_REGION }}
+      - name: Zip dist folder
+        run: |
+          cd dist/
+          zip -r dist.zip .
 
-      - name: Deploy to S3
-        run: aws s3 sync dist/ s3://${{ vars.S3_BUCKET_NAME }} --delete
+      - name: Create and Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./dist.zip
+          generate_release_notes: true
