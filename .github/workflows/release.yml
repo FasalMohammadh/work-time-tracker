@@ -1,12 +1,11 @@
-name: Create Release
+name: Release
 
 on:
   push:
     tags: ["v*"]
 
 permissions:
-  id-token: write
-  contents: read
+  contents: write
 
 jobs:
   release:
@@ -38,6 +37,7 @@ jobs:
         run: |
           cd dist/
           zip -r dist.zip .
+          cd ../
 
       - name: Create and Upload Release Assets
         uses: softprops/action-gh-release@v2
