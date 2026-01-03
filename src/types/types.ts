@@ -3,6 +3,6 @@ type Break = {
   end: string;
 };
 
-type BreakMap = Record<string, Partial<Break>>;
+type BreakMap = Record<string, Break>;
 
 export type { Break, BreakMap };

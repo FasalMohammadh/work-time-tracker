@@ -1,7 +1,7 @@
 import type { BreakMap } from "../types/types";
 
-const parseTime = (timeString: string | undefined) => {
-  if (!timeString) return null;
+const parseTime = (timeString: string) => {
+  if (!timeString.trim().length) return null;
   const [hours, minutes] = timeString.split(":").map(Number);
   return hours * 60 + minutes;
 };
@@ -25,8 +25,8 @@ const calculateTotalBreak = (breaks: BreakMap) => {
 };
 
 const calculateTotalWorked = (
-  signIn: string | undefined,
-  signOff: string | undefined,
+  signIn: string,
+  signOff: string,
   breaks: BreakMap
 ) => {
   const start = parseTime(signIn);

@@ -6,16 +6,13 @@ const SIGN_IN_TIME_KEY = "signInTime";
 const SIGN_OFF_TIME_KEY = "signOffTime";
 const BREAKS_KEY = "breaks";
 
-const signInTime = atom<string | undefined>(
-  getIsClient()
-    ? localStorage.getItem(SIGN_IN_TIME_KEY) ?? undefined
-    : undefined
+const signInTime = atom<string>(
+  getIsClient() ? localStorage.getItem(SIGN_IN_TIME_KEY) ?? "" : ""
 );
-const signOffTime = atom<string | undefined>(
-  getIsClient()
-    ? localStorage.getItem(SIGN_OFF_TIME_KEY) ?? undefined
-    : undefined
+const signOffTime = atom<string>(
+  getIsClient() ? localStorage.getItem(SIGN_OFF_TIME_KEY) ?? "" : ""
 );
+
 const getInitialBreaks = () => {
   if (!getIsClient()) return {};
   const stored = localStorage.getItem(BREAKS_KEY);
@@ -41,8 +38,8 @@ const setSignOffTime = (time: string) => {
 
 const addBreak = (id: string, breakData?: Break) => {
   breaks.setKey(id, {
-    start: breakData?.start,
-    end: breakData?.end,
+    start: breakData?.start ?? "",
+    end: breakData?.end ?? "",
   });
   localStorage.setItem(BREAKS_KEY, JSON.stringify(breaks.get()));
 };
@@ -74,8 +71,8 @@ const removeBreak = (id: string) => {
 };
 
 const reset = () => {
-  signInTime.set(undefined);
-  signOffTime.set(undefined);
+  signInTime.set("");
+  signOffTime.set("");
   breaks.set({});
   localStorage.removeItem(SIGN_IN_TIME_KEY);
   localStorage.removeItem(SIGN_OFF_TIME_KEY);
