@@ -1,9 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 import {
-  signInTime,
-  signOffTime,
   breaks,
   addBreaks,
+  setSignInTime,
+  setSignOffTime,
 } from "../stores/time-store";
 import type { Break } from "../types/types";
 
@@ -60,8 +60,8 @@ function updateStores(data: {
   signOff: string;
   breaks: Break[];
 }) {
-  if (data.signIn) signInTime.set(data.signIn);
-  if (data.signOff) signOffTime.set(data.signOff);
+  if (data.signIn) setSignInTime(data.signIn);
+  if (data.signOff) setSignOffTime(data.signOff);
 
   if (data.breaks && Array.isArray(data.breaks)) {
     breaks.set({});
