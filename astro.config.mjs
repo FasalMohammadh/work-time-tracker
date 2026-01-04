@@ -1,8 +1,6 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
 
-import icon from "astro-icon";
-
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -11,14 +9,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [
-    icon({
-      include: {
-        mdi: ["plus", "delete"],
-      },
-    }),
-    react(),
-  ],
+  integrations: [react()],
   experimental: {
     fonts: [
       {
