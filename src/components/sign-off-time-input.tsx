@@ -21,7 +21,7 @@ function SignOffTimeInput(props: SignOffTimeInputProps) {
       <input
         aria-invalid={isInvalid}
         type="time"
-        className="bg-slate-950/60 border border-slate-800/50 rounded-lg p-3 text-white outline-none transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer scheme-dark aria-invalid:border-red-500/50 aria-invalid:focus:ring-red-500/20"
+        className="bg-slate-950/60 border w-full border-slate-800/50 rounded-lg p-3 text-white outline-none transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer scheme-dark aria-invalid:border-red-500/50 aria-invalid:focus:ring-red-500/20"
         aria-describedby="sign-off-help sign-off-error"
         value={$signOffTime}
         onChange={handleChangeSignOffTime}
