@@ -1,5 +1,6 @@
 import { atom, map } from "nanostores";
 import type { Break, BreakMap } from "../types/types";
+import { generateId } from "../lib/utils";
 
 const SIGN_IN_TIME_KEY = "signInTime";
 const SIGN_OFF_TIME_KEY = "signOffTime";
@@ -20,7 +21,7 @@ const setSignOffTime = (time: string) => {
 };
 
 const addBreak = (breakData?: Break) => {
-  breaks.setKey(crypto.randomUUID(), {
+  breaks.setKey(generateId(), {
     start: breakData?.start ?? "",
     end: breakData?.end ?? "",
   });
@@ -30,7 +31,7 @@ const addBreak = (breakData?: Break) => {
 const addBreaks = (breaksData: Break[]) => {
   const currentBreaks = breaks.get();
   const newBreaks = breaksData.reduce((acc, breakData) => {
-    acc[crypto.randomUUID()] = breakData;
+    acc[generateId()] = breakData;
     return acc;
   }, {} as BreakMap);
   breaks.set({ ...currentBreaks, ...newBreaks });

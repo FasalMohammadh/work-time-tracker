@@ -2,4 +2,8 @@ function getIsClient() {
   return globalThis.window !== undefined;
 }
 
-export { getIsClient };
+function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36);
+}
+
+export { getIsClient, generateId };
