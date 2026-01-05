@@ -210,7 +210,7 @@ function ChatAnalyzer() {
             {files.map((fileObj) => (
               <div
                 key={fileObj.id}
-                className="relative group aspect-square rounded-lg overflow-hidden border border-slate-700 bg-slate-800 animate-scale-in"
+                className="relative aspect-square rounded-lg overflow-hidden border border-slate-700 bg-slate-800 animate-scale-in"
               >
                 <img
                   src={fileObj.preview}
@@ -219,7 +219,8 @@ function ChatAnalyzer() {
                 />
                 <button
                   onClick={() => removeFile(fileObj.id)}
-                  className="absolute top-1.5 right-1.5 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                  className="absolute top-1.5 right-1.5 w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all shadow-lg z-10 active:scale-90"
+                  aria-label="Remove image"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
