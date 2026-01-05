@@ -63,7 +63,33 @@ function ChatAnalyzer() {
   filesRef.current = files;
 
   useEffect(() => {
+    const handlePaste = (e: ClipboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === "INPUT" || target.tagName === "TEXTAREA") {
+        return;
+      }
+
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      const pastedFiles: File[] = [];
+      for (const item of Array.from(items)) {
+        if (item.type.startsWith("image/")) {
+          const file = item.getAsFile();
+          if (file) {
+            pastedFiles.push(file);
+          }
+        }
+      }
+
+      if (pastedFiles.length > 0) {
+        processFiles(pastedFiles);
+      }
+    };
+
+    globalThis.addEventListener("paste", handlePaste);
     return () => {
+      globalThis.removeEventListener("paste", handlePaste);
       filesRef.current.forEach((f) => URL.revokeObjectURL(f.preview));
     };
   }, []);
@@ -104,7 +130,7 @@ function ChatAnalyzer() {
     ? "Analyzing..."
     : `Analyze ${fileCount} Screenshot${pluralSuffix}`;
 
-  let uploadLabelText = "Upload or Drag Chat Screenshots";
+  let uploadLabelText = "Upload, Drag, or Ctrl+V to paste";
   if (isDragging) {
     uploadLabelText = "Drop screenshots here";
   } else if (fileCount > 0) {
