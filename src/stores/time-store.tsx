@@ -19,8 +19,8 @@ const setSignOffTime = (time: string) => {
   signOffTime.set(time);
 };
 
-const addBreak = (id: string, breakData?: Break) => {
-  breaks.setKey(id, {
+const addBreak = (breakData?: Break) => {
+  breaks.setKey(crypto.randomUUID(), {
     start: breakData?.start ?? "",
     end: breakData?.end ?? "",
   });

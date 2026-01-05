@@ -1,10 +1,10 @@
 import { addBreak } from "../stores/time-store";
 
-function AddBreak() {
-  const handleClick = () => {
-    addBreak(crypto.randomUUID());
-  };
+function handleClick() {
+  addBreak();
+}
 
+function AddBreak() {
   return (
     <button
       type="button"
