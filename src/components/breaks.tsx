@@ -34,7 +34,7 @@ function Breaks() {
               onChange={(event) => handleBreakChange(event, key)}
             />
           </div>
-          <div className="text-slate-500 text-xl mt-3.5">→</div>
+          <div className="text-slate-500 text-xl mt-6">→</div>
           <div className="mb-0 flex-1 flex flex-col">
             <label
               htmlFor={`break-end-${key}`}
@@ -55,7 +55,7 @@ function Breaks() {
         </div>
         <button
           type="button"
-          className="bg-transparent border-none text-slate-500 cursor-pointer p-2 rounded-lg transition-all mt-3.5 hover:text-red-500 hover:bg-red-500/10"
+          className="bg-transparent border-none text-slate-500 cursor-pointer p-2 rounded-lg transition-all mt-6 hover:text-red-500 hover:bg-red-500/10"
           aria-label="Remove break"
           onClick={() => removeBreak(key)}
         >
